@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  pool: 5
+  host: localhost
+  database: diploma_dev
+  user: postgres
+  password: '123'
