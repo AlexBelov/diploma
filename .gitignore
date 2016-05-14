@@ -17,3 +17,6 @@ erd.pdf
 
 # Ignore uploads
 /public/uploads/*
+
+# Ignore jupyter temp files
+.ipynb_checkpoints
