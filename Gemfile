@@ -10,6 +10,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry-rails'
 gem 'awesome_print'
 gem 'pg'
+gem 'rails-erd'
 
 gem 'koala'
 gem 'mechanize'
