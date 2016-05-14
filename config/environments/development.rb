@@ -40,6 +40,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   SocialAnalytics.facebook_token = Rails.application.secrets.facebook_token
+  # get here - https://developers.facebook.com/tools/explorer
   SocialAnalytics.facebook_email = Rails.application.secrets.facebook_email
   SocialAnalytics.facebook_password = Rails.application.secrets.facebook_password
   SocialAnalytics.linkedin_email = Rails.application.secrets.linkedin_email
