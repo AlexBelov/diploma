@@ -5,7 +5,7 @@ module SocialAnalytics
       return if !address.present?
       resp = Geocoder.search(address).first
       Address.create(
-        user_id: user_id,
+        addressable: User.find(user_id),
         city: resp.city,
         country: resp.country,
         lat: resp.geometry["location"]["lat"],
@@ -28,6 +28,7 @@ module SocialAnalytics
         @web_scraper.scrape(fb.facebook_id)
         geocode(@web_scraper.current_location, fb.user_id)
         geocode(@web_scraper.from_location, fb.user_id)
+        fb.update_columns(geocoded: true)
       end
     end
   end

@@ -1,7 +1,7 @@
 class CreateImages < ActiveRecord::Migration
   def change
     create_table :images do |t|
-      t.integer :user_id
+      t.references :imageable, polymorphic: true, index: true
       t.string :link
       t.timestamps
     end

@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514083327) do
+ActiveRecord::Schema.define(version: 20160514143743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "addressable_id"
+    t.string   "addressable_type"
     t.string   "city"
     t.string   "country"
     t.decimal  "lat",               precision: 10, scale: 6
@@ -27,8 +28,24 @@ ActiveRecord::Schema.define(version: 20160514083327) do
     t.datetime "updated_at"
   end
 
+  add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
+
   create_table "companies", force: :cascade do |t|
     t.string   "name"
+    t.text     "description"
+    t.string   "linkedin_company_url"
+    t.string   "website"
+    t.string   "company_size"
+    t.string   "company_type"
+    t.string   "industry"
+    t.date     "founded"
+    t.string   "country"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "companies_linkedin_data", force: :cascade do |t|
+    t.integer  "company_id"
     t.integer  "linkedin_data_id"
     t.boolean  "current",          default: false, null: false
     t.datetime "created_at"
@@ -60,11 +77,14 @@ ActiveRecord::Schema.define(version: 20160514083327) do
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer  "user_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "images", ["imageable_type", "imageable_id"], name: "index_images_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "imported_data", force: :cascade do |t|
     t.integer  "user_id"
@@ -94,11 +114,11 @@ ActiveRecord::Schema.define(version: 20160514083327) do
     t.string   "profile_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "encoded_name"
     t.string   "title"
     t.integer  "connections"
     t.string   "country"
-    t.boolean  "parsed",      default: false, null: false
-    t.boolean  "geocoded",    default: false, null: false
+    t.boolean  "geocoded",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -106,6 +126,18 @@ ActiveRecord::Schema.define(version: 20160514083327) do
   create_table "linkedin_data_skills", force: :cascade do |t|
     t.integer  "linkedin_data_id"
     t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "positions", force: :cascade do |t|
+    t.string   "linkedin_data_id"
+    t.string   "integer"
+    t.integer  "company_id"
+    t.string   "title"
+    t.string   "duration"
+    t.date     "start_date"
+    t.date     "end_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

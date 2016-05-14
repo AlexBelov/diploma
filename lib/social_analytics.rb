@@ -3,10 +3,13 @@ require 'mechanize'
 require 'octokit'
 require 'linkedin_scraper'
 
-require 'social_analytics/scrapers/web_scraper'
 require 'social_analytics/scrapers/facebook_scraper'
 require 'social_analytics/scrapers/linkedin_scraper'
 require 'social_analytics/scrapers/github_scraper'
+
+require 'social_analytics/scrapers/web_scraper'
+require 'social_analytics/scrapers/facebook_web_scraper'
+require 'social_analytics/scrapers/linkedin_web_scraper'
 
 require 'social_analytics/import.rb'
 require 'social_analytics/export.rb'

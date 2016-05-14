@@ -4,7 +4,7 @@ class MapController < ApplicationController
 
   def population
     respond_to do |format|
-      format.csv { render text: Address.to_csv }
+      format.csv { render text: Address.where(addressable_type: "User").to_csv }
     end
   end
 end
