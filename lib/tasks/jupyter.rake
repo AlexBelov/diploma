@@ -4,6 +4,6 @@ namespace :jupyter do
     env = {
       "RUBYLIB" => ($: + [ root ]).join(":")
     }
-    Process.exec(env, "iruby", "notebook")
+    Process.exec(env, "jupyter", "notebook")
   end
 end

@@ -21,7 +21,7 @@ gem 'linkedin-scraper', git: 'git@github.com:AlexBelov/linkedin-scraper.git'
 gem 'russian'
 gem 'geocoder'
 
-gem 'nyaplot'
+gem 'gnuplotrb'
 gem 'daru'
 gem 'iruby'
 gem 'rbczmq'
