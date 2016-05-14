@@ -1,6 +1,7 @@
 module SocialAnalytics
   class LinkedinWebScraper < WebScraper
     def scrape(name)
+      authorization if !@logged_in
       url = "http://www.linkedin.com/vsearch/p?type=people&keywords=#{name.split(' ').join('+')}"
       @results = @agent.get(url).body.scan(/\{"person"\:\{.*?\}\}/)
       @profile_id = JSON.parse(@results[0]).to_s.scan(/profile\/view\?id=(.*?)&/).compact.first.first
@@ -8,7 +9,7 @@ module SocialAnalytics
     end
 
     def get_public_profile
-      url = "http://www.linkedin.com/profile/view?id=#{profile_id}"
+      url = "http://www.linkedin.com/profile/view?id=#{@profile_id}"
       profile_raw = @agent.get(url).body
       @public_profile = profile_raw.scan(/https:\/\/www.linkedin.com\/in\/(.*?)\"/).first.first
     end

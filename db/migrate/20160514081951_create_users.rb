@@ -2,10 +2,11 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.string :name
-      t.boolean :facebook
-      t.boolean :linkedin
-      t.boolean :github
-      t.boolean :import
+      t.boolean :facebook, default: false, null: false
+      t.boolean :linkedin, default: false, null: false
+      t.boolean :linkedin_scraped, default: false, null: false
+      t.boolean :github, default: false, null: false
+      t.boolean :import, default: false, null: false
       t.timestamps
     end
   end

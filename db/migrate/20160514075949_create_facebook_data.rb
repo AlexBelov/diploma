@@ -5,7 +5,7 @@ class CreateFacebookData < ActiveRecord::Migration
       t.string :original_name
       t.string :encoded_name
       t.string :facebook_id
-      t.boolean :geocoded, default: false, null: false
+      t.boolean :address_geocoded, default: false, null: false
       t.timestamps
     end
   end

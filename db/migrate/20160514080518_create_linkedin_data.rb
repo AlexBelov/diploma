@@ -9,7 +9,6 @@ class CreateLinkedinData < ActiveRecord::Migration
       t.string :title
       t.integer :connections
       t.string :country
-      t.boolean :geocoded, default: false, null: false
       t.timestamps
     end
   end

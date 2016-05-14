@@ -11,10 +11,13 @@ require 'social_analytics/scrapers/web_scraper'
 require 'social_analytics/scrapers/facebook_web_scraper'
 require 'social_analytics/scrapers/linkedin_web_scraper'
 
+require 'social_analytics/geo/geo.rb'
+require 'social_analytics/geo/facebook_geo.rb'
+require 'social_analytics/geo/addressable_geo.rb'
+
 require 'social_analytics/import.rb'
 require 'social_analytics/export.rb'
 require 'social_analytics/preprocessing.rb'
-require 'social_analytics/geo.rb'
 require 'social_analytics/analytics.rb'
 
 module SocialAnalytics
@@ -31,7 +34,12 @@ module SocialAnalytics
     FacebookGeo.new(true).handle
   end
 
-  def self.haha
-    Linkedin::Profile.new("http://www.linkedin.com/in/belovalexander", { company_details: true })
+  def self.handle_linkedin
+    scraper = LinkedinScraper.new
+    User.where(linkedin: false, linkedin_scraped: false).each do |user|
+      scraper.get_public_member(user.name)
+      user.update_columns(linkedin_scraped: true)
+      sleep 1
+    end
   end
 end

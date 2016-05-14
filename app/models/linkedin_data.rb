@@ -6,6 +6,7 @@ class LinkedinData < ActiveRecord::Base
   has_and_belongs_to_many :companies
   has_and_belongs_to_many :skills
   has_many :positions
+  has_many :addresses, as: :addressable
 
   after_create :update_user
 

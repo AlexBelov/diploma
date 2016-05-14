@@ -2,7 +2,7 @@
 <div id="canvas-svg"></div>
 
 <script>
-d3.csv("map/population.csv", function(err, data) {
+d3.csv("<%= @type %>.csv", function(err, data) {
   var config = {"data0":"Country (or dependent territory)","data1":"Population","label0":"label 0","label1":"label 1","color0":"#99ccff","color1":"#0050A1","width":800,"height":400}
 
   var width = 960,

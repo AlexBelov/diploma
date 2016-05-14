@@ -7,7 +7,11 @@ module SocialAnalytics
     end
 
     def self.graduation_date(year)
-      year.present? ? Date.strptime("#{year}-07-01", '%Y-%m-%d')   : nil
+      year.present? ? Date.strptime("#{year}-07-01", '%Y-%m-%d') : nil
+    end
+
+    def self.foundation_date(year)
+      year.present? ? Date.ordinal(year) : nil
     end
   end
 end

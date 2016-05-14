@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.string   "country"
     t.decimal  "lat",               precision: 10, scale: 6
     t.decimal  "lng",               precision: 10, scale: 6
+    t.boolean  "geocoded",                                   default: false, null: false
     t.json     "geocoder_response"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -47,7 +48,6 @@ ActiveRecord::Schema.define(version: 20160514143743) do
   create_table "companies_linkedin_data", force: :cascade do |t|
     t.integer  "company_id"
     t.integer  "linkedin_data_id"
-    t.boolean  "current",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.string   "original_name"
     t.string   "encoded_name"
     t.string   "facebook_id"
-    t.boolean  "geocoded",      default: false, null: false
+    t.boolean  "address_geocoded", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -118,7 +118,6 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.string   "title"
     t.integer  "connections"
     t.string   "country"
-    t.boolean  "geocoded",     default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -131,13 +130,13 @@ ActiveRecord::Schema.define(version: 20160514143743) do
   end
 
   create_table "positions", force: :cascade do |t|
-    t.string   "linkedin_data_id"
-    t.string   "integer"
+    t.integer  "linkedin_data_id"
     t.integer  "company_id"
     t.string   "title"
     t.string   "duration"
     t.date     "start_date"
     t.date     "end_date"
+    t.boolean  "current",          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -162,10 +161,11 @@ ActiveRecord::Schema.define(version: 20160514143743) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "facebook"
-    t.boolean  "linkedin"
-    t.boolean  "github"
-    t.boolean  "import"
+    t.boolean  "facebook",         default: false, null: false
+    t.boolean  "linkedin",         default: false, null: false
+    t.boolean  "linkedin_scraped", default: false, null: false
+    t.boolean  "github",           default: false, null: false
+    t.boolean  "import",           default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

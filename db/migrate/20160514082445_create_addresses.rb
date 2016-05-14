@@ -6,6 +6,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :country
       t.decimal :lat, precision: 10, scale: 6
       t.decimal :lng, precision: 10, scale: 6
+      t.boolean :geocoded, default: false, null: false
       t.json :geocoder_response
       t.timestamps
     end

@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   end
   resources :map, only: [:index] do
     collection do
-      get :population
+      get :users
+      get :companies
+      get :all_addresses
+      get :user_addresses
+      get :company_addresses
     end
   end
 end
