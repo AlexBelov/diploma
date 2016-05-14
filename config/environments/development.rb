@@ -46,4 +46,9 @@ Rails.application.configure do
   SocialAnalytics.linkedin_password = Rails.application.secrets.linkedin_password
   SocialAnalytics.github_login = Rails.application.secrets.github_login
   SocialAnalytics.github_password = Rails.application.secrets.github_password
+
+  Octokit.configure do |c|
+    c.login = Rails.application.secrets.github_login
+    c.password = Rails.application.secrets.github_password
+  end
 end

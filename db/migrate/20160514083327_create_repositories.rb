@@ -4,6 +4,7 @@ class CreateRepositories < ActiveRecord::Migration
       t.integer :github_data_id
       t.integer :primary_language_id
       t.string :full_name
+      t.integer :repo_id, limit: 8
       t.integer :forks
       t.integer :issues
       t.integer :watchers

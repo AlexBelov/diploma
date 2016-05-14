@@ -145,12 +145,13 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.integer  "github_data_id"
     t.integer  "primary_language_id"
     t.string   "full_name"
+    t.integer  "repo_id",             limit: 8
     t.integer  "forks"
     t.integer  "issues"
     t.integer  "watchers"
     t.integer  "subscribers"
     t.integer  "stargazers"
-    t.boolean  "fork",                default: false, null: false
+    t.boolean  "fork",                          default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -165,6 +166,7 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.boolean  "linkedin",         default: false, null: false
     t.boolean  "linkedin_scraped", default: false, null: false
     t.boolean  "github",           default: false, null: false
+    t.boolean  "github_scraped",   default: false, null: false
     t.boolean  "import",           default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"

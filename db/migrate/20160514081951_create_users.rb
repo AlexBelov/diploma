@@ -6,6 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :linkedin, default: false, null: false
       t.boolean :linkedin_scraped, default: false, null: false
       t.boolean :github, default: false, null: false
+      t.boolean :github_scraped, default: false, null: false
       t.boolean :import, default: false, null: false
       t.timestamps
     end

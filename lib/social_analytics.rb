@@ -42,4 +42,13 @@ module SocialAnalytics
       sleep 1
     end
   end
+
+  def self.handle_github
+    scraper = GithubScraper.new
+    User.where(github: false, github_scraped: false).each do |user|
+      scraper.search_user(user.name)
+      user.update_columns(github_scraped: true)
+      sleep 1
+    end
+  end
 end
