@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160514083327) do
     t.string   "original_name"
     t.string   "encoded_name"
     t.string   "facebook_id"
+    t.boolean  "geocoded",      default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,7 +96,9 @@ ActiveRecord::Schema.define(version: 20160514083327) do
     t.string   "last_name"
     t.string   "title"
     t.integer  "connections"
+    t.string   "country"
     t.boolean  "parsed",      default: false, null: false
+    t.boolean  "geocoded",    default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

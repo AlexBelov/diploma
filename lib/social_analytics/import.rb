@@ -4,9 +4,7 @@ module SocialAnalytics
       csv_text = File.read(file)
       CSV.parse(csv_text, headers: false).each do |row|
         last_name, first_name, middle_name = row[0].split(' ')
-        user = User.create
         ImportedData.create(
-          user_id: user.id,
           first_name: first_name,
           last_name: last_name,
           middle_name: middle_name,

@@ -1,13 +1,17 @@
 require 'koala'
-require 'pry'
-require 'awesome_print'
 require 'mechanize'
 require 'octokit'
 require 'linkedin_scraper'
 
+require 'social_analytics/scrapers/web_scraper'
 require 'social_analytics/scrapers/facebook_scraper'
 require 'social_analytics/scrapers/linkedin_scraper'
-# require 'social_analytics/scrapers/github'
+require 'social_analytics/scrapers/github_scraper'
+
+require 'social_analytics/import.rb'
+require 'social_analytics/export.rb'
+require 'social_analytics/preprocessing.rb'
+require 'social_analytics/geo.rb'
 
 module SocialAnalytics
   class << self
@@ -16,8 +20,11 @@ module SocialAnalytics
                   :github_password
   end
 
-  def self.get_group_members(gid)
-    SocialAnalytics::FacebookScraper.new(facebook_token).get_group_members(gid)
+  def self.handle_facebook(gid = nil)
+    if FacebookData.count.zero?
+      FacebookScraper.new(facebook_token, gid).save_group_members
+    end
+    FacebookGeo.new(true).handle
   end
 
   def self.haha

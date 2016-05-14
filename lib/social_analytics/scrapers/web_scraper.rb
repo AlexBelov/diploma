@@ -1,4 +1,42 @@
 module SocialAnalytics
   class WebScraper
+    def initialize
+      @agent = Mechanize.new
+      @agent.follow_meta_refresh = true
+    end
+  end
+
+  class FacebookWebScraper < WebScraper
+    def authorization
+      @agent.get('http://m.facebook.com')
+      form = @agent.page.form_with(:method => 'POST')
+      form.email = SocialAnalytics.facebook_email
+      form.pass = SocialAnalytics.facebook_password
+      @agent.submit(form)
+      @logged_in = !@agent.page.uri.to_s.match('home.php').nil?
+    end
+
+    def scrape(facebook_id)
+      authorization if !@logged_in
+      @body = @agent.get("https://www.facebook.com/#{facebook_id}").body
+    end
+
+    def current_location
+      begin
+        @body.scan(/Lives in .*? href=\"(.*?)\?ref=br_rs/).flatten.first.
+              scan(/https:\/\/www.facebook.com\/pages\/(.*?)\//).flatten.first
+      rescue
+        nil
+      end
+    end
+
+    def from_location
+      begin
+        @body.scan(/From .*? href=\"(.*?)\?ref=br_rs/).flatten.first.
+              scan(/https:\/\/www.facebook.com\/pages\/(.*?)\//).flatten.first
+      rescue
+        nil
+      end
+    end
   end
 end

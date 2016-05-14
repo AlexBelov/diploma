@@ -1,5 +1,6 @@
 class ImportedData < ActiveRecord::Base
   include Encodable
+  include BelongsToUser
 
   belongs_to :user
 
@@ -10,6 +11,6 @@ class ImportedData < ActiveRecord::Base
   end
 
   def update_user
-    user.update_attributes(import: true, name: encoded_name)
+    user.update_attributes(import: true)
   end
 end
