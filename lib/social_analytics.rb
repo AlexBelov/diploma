@@ -12,6 +12,7 @@ require 'social_analytics/import.rb'
 require 'social_analytics/export.rb'
 require 'social_analytics/preprocessing.rb'
 require 'social_analytics/geo.rb'
+require 'social_analytics/analytics.rb'
 
 module SocialAnalytics
   class << self

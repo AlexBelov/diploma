@@ -4,4 +4,9 @@ Rails.application.routes.draw do
       post :upload
     end
   end
+  resources :map, only: [:index] do
+    collection do
+      get :population
+    end
+  end
 end
