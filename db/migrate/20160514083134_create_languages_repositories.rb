@@ -4,6 +4,7 @@ class CreateLanguagesRepositories < ActiveRecord::Migration
       t.integer :language_id
       t.integer :repository_id
       t.integer :loc, limit: 8
+      t.timestamps
     end
   end
 end

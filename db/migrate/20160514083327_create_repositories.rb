@@ -10,6 +10,7 @@ class CreateRepositories < ActiveRecord::Migration
       t.integer :subscribers
       t.integer :stargazers
       t.boolean :fork, default: false, null: false
+      t.timestamps
     end
   end
 end

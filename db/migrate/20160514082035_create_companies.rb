@@ -4,6 +4,7 @@ class CreateCompanies < ActiveRecord::Migration
       t.string :name
       t.integer :linkedin_data_id
       t.boolean :current, default: false, null: false
+      t.timestamps
     end
   end
 end

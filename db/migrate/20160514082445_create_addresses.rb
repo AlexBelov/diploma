@@ -7,6 +7,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.decimal :lat, precision: 10, scale: 6
       t.decimal :lng, precision: 10, scale: 6
       t.json :geocoder_response
+      t.timestamps
     end
   end
 end

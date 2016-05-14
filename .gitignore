@@ -14,3 +14,6 @@
 
 # Ignore erd
 erd.pdf
+
+# Ignore uploads
+/public/uploads/*

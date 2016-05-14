@@ -17,47 +17,63 @@ ActiveRecord::Schema.define(version: 20160514083327) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "city"
-    t.string  "country"
-    t.decimal "lat",               precision: 10, scale: 6
-    t.decimal "lng",               precision: 10, scale: 6
-    t.json    "geocoder_response"
+    t.integer  "user_id"
+    t.string   "city"
+    t.string   "country"
+    t.decimal  "lat",               precision: 10, scale: 6
+    t.decimal  "lng",               precision: 10, scale: 6
+    t.json     "geocoder_response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "companies", force: :cascade do |t|
-    t.string  "name"
-    t.integer "linkedin_data_id"
-    t.boolean "current",          default: false, null: false
+    t.string   "name"
+    t.integer  "linkedin_data_id"
+    t.boolean  "current",          default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "facebook_data", force: :cascade do |t|
-    t.string "original_name"
-    t.string "encoded_name"
-    t.string "facebook_id"
+    t.integer  "user_id"
+    t.string   "original_name"
+    t.string   "encoded_name"
+    t.string   "facebook_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "github_data", force: :cascade do |t|
-    t.string  "login"
-    t.string  "name"
-    t.string  "email"
-    t.integer "num_repos"
-    t.integer "num_gists"
-    t.integer "num_followers"
-    t.integer "num_following"
-    t.string  "blog"
+    t.integer  "user_id"
+    t.string   "login"
+    t.string   "name"
+    t.string   "email"
+    t.integer  "num_repos"
+    t.integer  "num_gists"
+    t.integer  "num_followers"
+    t.integer  "num_following"
+    t.string   "blog"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "images", force: :cascade do |t|
-    t.integer "user_id"
-    t.string  "link"
+    t.integer  "user_id"
+    t.string   "link"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "imported_data", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "middle_name"
-    t.string "encoded_name"
+    t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "middle_name"
+    t.string   "encoded_name"
+    t.date     "graduated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "languages", force: :cascade do |t|
@@ -65,35 +81,44 @@ ActiveRecord::Schema.define(version: 20160514083327) do
   end
 
   create_table "languages_repositories", force: :cascade do |t|
-    t.integer "language_id"
-    t.integer "repository_id"
-    t.integer "loc",           limit: 8
+    t.integer  "language_id"
+    t.integer  "repository_id"
+    t.integer  "loc",           limit: 8
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "linkedin_data", force: :cascade do |t|
-    t.string  "profile_id"
-    t.string  "first_name"
-    t.string  "last_name"
-    t.string  "title"
-    t.integer "connections"
-    t.boolean "parsed",      default: false, null: false
+    t.integer  "user_id"
+    t.string   "profile_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "title"
+    t.integer  "connections"
+    t.boolean  "parsed",      default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "linkedin_data_skills", force: :cascade do |t|
-    t.integer "linkedin_data_id"
-    t.integer "skill_id"
+    t.integer  "linkedin_data_id"
+    t.integer  "skill_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "repositories", force: :cascade do |t|
-    t.integer "github_data_id"
-    t.integer "primary_language_id"
-    t.string  "full_name"
-    t.integer "forks"
-    t.integer "issues"
-    t.integer "watchers"
-    t.integer "subscribers"
-    t.integer "stargazers"
-    t.boolean "fork",                default: false, null: false
+    t.integer  "github_data_id"
+    t.integer  "primary_language_id"
+    t.string   "full_name"
+    t.integer  "forks"
+    t.integer  "issues"
+    t.integer  "watchers"
+    t.integer  "subscribers"
+    t.integer  "stargazers"
+    t.boolean  "fork",                default: false, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "skills", force: :cascade do |t|
@@ -101,10 +126,13 @@ ActiveRecord::Schema.define(version: 20160514083327) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string  "name"
-    t.integer "facebook_data_id"
-    t.integer "linkedin_data_id"
-    t.integer "github_data_id"
+    t.string   "name"
+    t.boolean  "facebook"
+    t.boolean  "linkedin"
+    t.boolean  "github"
+    t.boolean  "import"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
