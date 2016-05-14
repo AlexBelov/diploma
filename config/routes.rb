@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "import#index"
+
   resources :import, only: [:index] do
     collection do
       post :upload

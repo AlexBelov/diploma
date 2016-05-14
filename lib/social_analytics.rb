@@ -28,10 +28,11 @@ module SocialAnalytics
   end
 
   def self.handle_facebook(gid = nil)
+    puts "Start receiving facebook group members...".green
     if FacebookData.count.zero?
       FacebookScraper.new(facebook_token, gid).save_group_members
     end
-    FacebookGeo.new(true).handle
+    FacebookGeo.new(false).handle
   end
 
   def self.handle_linkedin

@@ -14,7 +14,8 @@ module SocialAnalytics
           resp = geocode(location)
           save(resp, fb.id, fb.class.to_s)
         end
-        relation.update_columns(address_geocoded: true)
+        fb.update_columns(address_geocoded: true)
+        sleep rand(1.0..2.0)
       end
     end
   end

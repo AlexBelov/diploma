@@ -8,6 +8,7 @@ gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'pry-rails'
+gem 'colorize'
 gem 'awesome_print'
 gem 'pg'
 gem 'rails-erd'
@@ -20,10 +21,10 @@ gem 'linkedin-scraper', git: 'git@github.com:AlexBelov/linkedin-scraper.git'
 gem 'russian'
 gem 'geocoder'
 
+gem 'nyaplot'
 gem 'daru'
 gem 'iruby'
 gem 'rbczmq'
-gem 'nyaplot'
 
 group :development, :test do
   gem 'pry-byebug'
