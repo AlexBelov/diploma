@@ -11,6 +11,7 @@ gem 'pry-rails'
 gem 'awesome_print'
 gem 'pg'
 gem 'rails-erd'
+gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'koala'
 gem 'mechanize'

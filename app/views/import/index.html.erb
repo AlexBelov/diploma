@@ -1,6 +1,18 @@
-<h2>Import</h2>
-<%= form_tag({action: :upload}, multipart: true) do %>
-  <%= text_field_tag :year %>
-  <%= file_field_tag :file %>
-  <%= submit_tag 'Submit' %>
-<% end %>
+<h2 class="text-center">Import</h2>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="well text-center col-md-8">
+    <%= form_tag({action: :upload}, multipart: true) do %>
+      <label for="year">Graduation year</label>
+      <br>
+      <%= text_field_tag :year %>
+      <br>
+      <label for="file">Students list in csv</label>
+      <br>
+      <%= file_field_tag :file, class: "import-file-input success" %>
+      <br>
+      <%= submit_tag 'Submit', class: "btn btn-primary btn-lg" %>
+    <% end %>
+  </div>
+  <div class="col-md-2"></div>
+</div>
