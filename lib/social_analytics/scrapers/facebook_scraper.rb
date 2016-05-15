@@ -8,10 +8,11 @@ module SocialAnalytics
     end
 
     def get_group_members
+      puts "Getting group #{@gid} members...".blue
       begin
         @members = @graph.get_connections(@gid, "members")
       rescue
-        puts "Visit https://developers.facebook.com/tools/explorer to refresh token"
+        puts "Visit https://developers.facebook.com/tools/explorer to refresh token".red
       end
     end
 
@@ -19,11 +20,11 @@ module SocialAnalytics
       self.get_group_members if !@members.present?
       return if @members.empty?
       @members.each do |member|
-        puts "Save fb user #{member["name"]}".blue
-        FacebookData.create(
+        facebook_data = FacebookData.create(
           original_name: member["name"],
           facebook_id: member["id"]
         )
+        puts "Save fb user ".blue + "#{facebook_data.user.name}".green
       end
     end
   end

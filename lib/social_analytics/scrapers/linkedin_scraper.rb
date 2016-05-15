@@ -58,6 +58,8 @@ module SocialAnalytics
     def save_public_member
       return if !@profile.present?
 
+      puts "Found Linkedin user - ".blue + "#{@profile.first_name} #{@profile.last_name}".green
+
       @linkedin_data = LinkedinData.create(
         profile_id: @public_profile,
         first_name: @profile.first_name,
@@ -68,6 +70,7 @@ module SocialAnalytics
       )
 
       if @linkedin_data.addresses.empty? && @profile.country.present?
+        puts "Saving linkedin address".yellow
         Address.create(
           addressable: @linkedin_data.user,
           country: @profile.country
@@ -75,12 +78,14 @@ module SocialAnalytics
       end
 
       if @linkedin_data.skills.empty?
+        puts "Saving skills".green
         @profile.skills.each do |skill_name|
           skill = Skill.where(name: skill_name).first_or_create
           @linkedin_data.skills << skill
         end
       end
 
+      puts "Saving companies".yellow
       save_companies(@profile.past_companies, false)
       save_companies(@profile.current_companies, true)
     end

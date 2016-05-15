@@ -12,6 +12,9 @@ module SocialAnalytics
 
     def save_user
       return if @users.empty?
+
+      puts "Found Github users".blue
+
       @users.each do |user|
         github_data = GithubData.create(
           login: user.login,
@@ -24,6 +27,7 @@ module SocialAnalytics
           blog: user.blog
         )
         if user.avatar_url.present?
+          puts "Saving avatar image".yellow
           Image.create(
             imageable: github_data.user,
             link: user.avatar_url
@@ -34,6 +38,7 @@ module SocialAnalytics
     end
 
     def save_repositories(login)
+      puts "Saving repositories".green
       repositories = Octokit.repositories(login).map(&:id).first(10)
       repositories.each do |repo_id|
         repo = Octokit.repository(repo_id)
