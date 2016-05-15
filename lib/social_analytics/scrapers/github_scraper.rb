@@ -13,7 +13,7 @@ module SocialAnalytics
     def save_user
       return if @users.empty?
       @users.each do |user|
-        GithubData.create(
+        github_data = GithubData.create(
           login: user.login,
           name: user.name,
           email: user.email,
@@ -23,12 +23,18 @@ module SocialAnalytics
           num_following: user.following,
           blog: user.blog
         )
+        if user.avatar_url.present?
+          Image.create(
+            imageable: github_data.user,
+            link: user.avatar_url
+          )
+        end
         save_repositories(user.login)
       end
     end
 
     def save_repositories(login)
-      repositories = Octokit.repositories(login).map(&:id)
+      repositories = Octokit.repositories(login).map(&:id).first(10)
       repositories.each do |repo_id|
         repo = Octokit.repository(repo_id)
         repository = Repository.create(
