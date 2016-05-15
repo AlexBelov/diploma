@@ -15,4 +15,9 @@ Rails.application.routes.draw do
       get :company_addresses
     end
   end
+  resources :pdf do
+    collection do
+      get :report
+    end
+  end
 end

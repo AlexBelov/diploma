@@ -26,6 +26,8 @@ gem 'daru'
 gem 'iruby'
 gem 'rbczmq'
 
+gem 'wicked_pdf'
+
 group :development, :test do
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0'

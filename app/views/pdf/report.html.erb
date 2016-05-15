@@ -1,0 +1,44 @@
+<% sources = @sources if @sources.present? %>
+<% graduation_date = @graduation_date if @graduation_date.present? %>
+<% countries = @countries if @countries.present? %>
+<% skills = @skills if @skills.present? %>
+<% languages_in_repos = @languages_in_repos if @languages_in_repos.present? %>
+<% companies_countries = @companies_countries if @companies_countries.present? %>
+<% company_sizes = @company_sizes if @company_sizes.present? %>
+
+<!doctype html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  </head>
+  <body onload='number_pages' style="width: 800px; margin: auto">
+    <h2 style="text-align: center">Статистика по источникам данных</h2>
+    <div style="text-align: center">
+      <img src="data:image/png;base64,<%= sources %>">
+    </div>
+
+    <h2 style="text-align: center">Статистика по годам выпуска</h2>
+    <div style="text-align: center">
+      <img src="data:image/png;base64,<%= graduation_date %>">
+    </div>
+
+    <div style="page-break-before: always;"></div>
+
+    <h2 style="text-align: center">Статистика по странам</h2>
+    <div style="text-align: center">
+      <img src="data:image/png;base64,<%= countries %>">
+    </div>
+
+    <h2 style="text-align: center">Статистика по компаниям в странах</h2>
+    <div style="text-align: center">
+      <img src="data:image/png;base64,<%= companies_countries %>">
+    </div>
+
+    <div style="page-break-before: always;"></div>
+
+    <h2 style="text-align: center">Статистика по размерам компаний</h2>
+    <div style="text-align: center">
+      <img src="data:image/png;base64,<%= company_sizes %>">
+    </div>
+  </body>
+</html>
