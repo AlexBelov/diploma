@@ -3,6 +3,9 @@ require 'mechanize'
 require 'octokit'
 require 'linkedin_scraper'
 
+require 'daru'
+require 'gnuplotrb'
+
 require 'social_analytics/scrapers/facebook_scraper'
 require 'social_analytics/scrapers/linkedin_scraper'
 require 'social_analytics/scrapers/github_scraper'
