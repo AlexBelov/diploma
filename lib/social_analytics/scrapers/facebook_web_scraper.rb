@@ -2,7 +2,12 @@ module SocialAnalytics
   class FacebookWebScraper < WebScraper
     def scrape(facebook_id)
       authorization if !@logged_in
-      @body = @agent.get("https://www.facebook.com/#{facebook_id}").body
+      @body = begin
+        @agent.get("https://www.facebook.com/#{facebook_id}").body
+      rescue
+        puts "Problem with getting fb profile".red
+        nil
+      end
     end
 
     def current_location

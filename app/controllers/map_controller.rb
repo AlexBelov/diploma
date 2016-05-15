@@ -21,7 +21,7 @@ class MapController < ApplicationController
 
   def user_addresses
     respond_to do |format|
-      format.csv { render text: Address.where(addressable_type: "User").to_csv }
+      format.csv { render text: Address.where(addressable_type: ["User", "FacebookData"]).to_csv }
     end
   end
 

@@ -37,7 +37,7 @@ module SocialAnalytics
           )
         end
 
-        if company.address.present? && data[:country].present?
+        if !company.address.present? && data[:country].present?
           Address.create(
             addressable: company,
             country: data[:country]
