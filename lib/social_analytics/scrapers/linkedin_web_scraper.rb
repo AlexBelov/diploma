@@ -4,14 +4,24 @@ module SocialAnalytics
       authorization if !@logged_in
       url = "http://www.linkedin.com/vsearch/p?type=people&keywords=#{name.split(' ').join('+')}"
       @results = @agent.get(url).body.scan(/\{"person"\:\{.*?\}\}/)
-      @profile_id = JSON.parse(@results[0]).to_s.scan(/profile\/view\?id=(.*?)&/).compact.first.first
+      return if !@results[0].present?
+      @profile_id = begin
+        JSON.parse(@results[0]).to_s.scan(/profile\/view\?id=(.*?)&/).compact.first.first
+      rescue
+        nil
+      end
       get_public_profile
     end
 
     def get_public_profile
+      return if @profile_id.nil?
       url = "http://www.linkedin.com/profile/view?id=#{@profile_id}"
       profile_raw = @agent.get(url).body
-      @public_profile = profile_raw.scan(/https:\/\/www.linkedin.com\/in\/(.*?)\"/).first.first
+      @public_profile = begin
+        profile_raw.scan(/\.com\/in\/(.*?)\//).first.first
+      rescue
+        nil
+      end
     end
 
     private

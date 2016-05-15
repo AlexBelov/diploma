@@ -8,6 +8,7 @@ module SocialAnalytics
 
     def get_public_member(name)
       @public_profile = @web_scraper.scrape(name)
+      return if @public_profile.nil?
       @profile = begin
         Linkedin::Profile.new("http://www.linkedin.com/in/#{@public_profile}", { company_details: true })
       rescue
@@ -86,8 +87,8 @@ module SocialAnalytics
       end
 
       puts "Saving companies".yellow
-      save_companies(@profile.past_companies, false)
-      save_companies(@profile.current_companies, true)
+      save_companies(begin @profile.past_companies rescue [] end, false)
+      save_companies(begin @profile.current_companies rescue [] end, true)
     end
   end
 end
