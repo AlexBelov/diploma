@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514143743) do
+ActiveRecord::Schema.define(version: 20160515173849) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20160514143743) do
   end
 
   add_index "addresses", ["addressable_type", "addressable_id"], name: "index_addresses_on_addressable_type_and_addressable_id", using: :btree
+  add_index "addresses", ["addressable_type"], name: "index_addresses_on_addressable_type", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
@@ -97,9 +98,13 @@ ActiveRecord::Schema.define(version: 20160514143743) do
     t.datetime "updated_at"
   end
 
+  add_index "imported_data", ["graduated_at"], name: "index_imported_data_on_graduated_at", using: :btree
+
   create_table "languages", force: :cascade do |t|
     t.string "name"
   end
+
+  add_index "languages", ["name"], name: "index_languages_on_name", using: :btree
 
   create_table "languages_repositories", force: :cascade do |t|
     t.integer  "language_id"
@@ -159,6 +164,8 @@ ActiveRecord::Schema.define(version: 20160514143743) do
   create_table "skills", force: :cascade do |t|
     t.string "name"
   end
+
+  add_index "skills", ["name"], name: "index_skills_on_name", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
