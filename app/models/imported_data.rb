@@ -10,6 +10,8 @@ class ImportedData < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  private
+
   def update_user
     user.update_attributes(import: true)
   end
