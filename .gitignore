@@ -19,7 +19,7 @@ erd.pdf
 /public/uploads/*
 
 # Ignore jupyter temp files
-.ipynb_checkpoints
+/.ipynb_checkpoints
 
 # Ignore secrets.yml
 config/secrets.yml
