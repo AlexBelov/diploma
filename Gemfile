@@ -31,4 +31,5 @@ gem 'wicked_pdf'
 group :development, :test do
   gem 'pry-byebug'
   gem 'web-console', '~> 2.0'
+  gem "capistrano", "~> 3.4"
 end
