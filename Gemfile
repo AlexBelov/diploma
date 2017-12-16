@@ -1,12 +1,12 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.2.3'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'rails', '4.2.8'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'jbuilder', '~> 2.0'
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'jbuilder'
+gem 'sdoc', group: :doc
 gem 'pry-rails'
 gem 'colorize'
 gem 'awesome_print'
@@ -23,8 +23,8 @@ gem 'geocoder'
 
 gem 'gnuplotrb'
 gem 'daru'
-gem 'iruby'
-gem 'rbczmq'
+# gem 'iruby'
+# gem 'rbczmq'
 
 gem 'wicked_pdf'
 
