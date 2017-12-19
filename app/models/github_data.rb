@@ -3,6 +3,7 @@ class GithubData < ActiveRecord::Base
 
   belongs_to :user
   has_many :repositories
+  has_many :stars
 
   after_create :update_user
 
