@@ -27,6 +27,16 @@ Rails.application.routes.draw do
 
   resources :progress, only: [:index]
 
+  resources :bubbles, only: [:index] do
+    collection do
+      get :countries
+      get :languages
+      get :skills_data
+      get :countries_data
+      get :languages_data
+    end
+  end
+
   resources :pdf do
     collection do
       get :report

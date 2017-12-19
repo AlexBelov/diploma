@@ -22,7 +22,7 @@ $( document ).ready(function() {
     var step = end < start ? -0.01 : 0.01;
 
     //Define the circle
-    var circle = d3.svg.arc()
+    var circle = d3.arc()
         .startAngle(0)
         .innerRadius(radius)
         .outerRadius(radius - border);

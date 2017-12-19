@@ -81,15 +81,15 @@ d3.csv("<%= @type %>.csv", function(err, data) {
   var MAP_KEY = config.data0;
   var MAP_VALUE = config.data1;
 
-  var projection = d3.geo.mercator()
+  var projection = d3.geoMercator()
       .scale((width + 1) / 2 / Math.PI)
       .translate([width / 2, height / 2])
       .precision(.1);
 
-  var path = d3.geo.path()
+  var path = d3.geoPath()
       .projection(projection);
 
-  var graticule = d3.geo.graticule();
+  var graticule = d3.geoGraticule();
 
   var svg = d3.select("#canvas-svg").append("svg")
       .attr("width", width)
@@ -110,7 +110,7 @@ d3.csv("<%= @type %>.csv", function(err, data) {
     valueHash[d[MAP_KEY]] = +d[MAP_VALUE];
   });
 
-  var quantize = d3.scale.quantize()
+  var quantize = d3.scaleQuantize()
       .domain([0, 1.0])
       .range(d3.range(COLOR_COUNTS).map(function(i) { return i }));
 
