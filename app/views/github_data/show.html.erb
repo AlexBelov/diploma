@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Repository</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recommendations.each do |recommendation| %>
+      <tr>
+        <td><%= recommendation[0] %></td>
+        <td><%= (recommendation[1] * 100).round(1) %>%</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

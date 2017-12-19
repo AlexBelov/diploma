@@ -1,9 +1,30 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "map";
+@import "progress";
 
 .import-file-input {
   margin: 0 auto;
   padding: 10px;
   border: 1px solid grey;
+}
+
+.layout-main {
+  display: flex;
+  border-bottom: 1px solid #b5b5b5;
+
+  .layout-sidebar {
+    min-width: 200px;
+    padding: 20px 0 20px 10px;
+    border-right: 1px solid #b5b5b5;
+
+    ul {
+      padding-left: 20px;
+    }
+  }
+
+  .layout-content {
+    width: 100%;
+    padding: 20px 0 20px 10px;
+  }
 }

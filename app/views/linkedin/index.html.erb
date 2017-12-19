@@ -1,0 +1,36 @@
+<%= form_tag(linkedin_index_path, method: :get) do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q, @query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%= paginate @users, params: {q: @query} %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Profile ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Title</th>
+      <th>Connections</th>
+      <th>Country</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.profile_id %></td>
+        <td><%= user.first_name %></td>
+        <td><%= user.last_name %></td>
+        <td><%= user.title %></td>
+        <td><%= user.connections %></td>
+        <td><%= user.country %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @users, params: {q: @query} %>

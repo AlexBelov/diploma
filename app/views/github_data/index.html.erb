@@ -1,0 +1,39 @@
+<%= form_tag(github_data_path, method: :get) do %>
+  <%= label_tag(:q, "Search for:") %>
+  <%= text_field_tag(:q, @query) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+<%= paginate @github_data, params: {q: @query} %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Login</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Number of Repos</th>
+      <th>Number of Stars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @github_data.each do |user| %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.login %></td>
+        <td><%= user.name %></td>
+        <td><%= user.email %></td>
+        <td><%= user.num_repos %></td>
+        <td><%= user.stars.count %></td>
+        <% if user.stars.count > 0 %>
+          <td><%= link_to 'Recommendations', github_datum_path(user) %></td>
+        <% else %>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @github_data, params: {q: @query} %>

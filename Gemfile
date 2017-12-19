@@ -14,6 +14,7 @@ gem 'pg'
 gem 'rails-erd'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'sidekiq'
+gem 'kaminari'
 
 gem 'koala'
 gem 'mechanize'
@@ -28,6 +29,7 @@ gem 'daru'
 # gem 'rbczmq'
 
 gem 'wicked_pdf'
+gem 'underscore-rails'
 
 group :development, :test do
   gem 'pry-byebug'

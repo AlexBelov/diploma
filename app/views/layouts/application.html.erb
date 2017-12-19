@@ -1,14 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Diploma</title>
+  <title>Social Network Analysis</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="layout-main">
+    <div class="layout-sidebar">
+      <p style="font-size: 15px;">Social Network Analysis</p>
+      <hr>
+      <p style="font-size: 13px;">Data</p>
+      <ul>
+        <li><%= link_to 'Github Data', github_data_path %></li>
+        <li><%= link_to 'LinkedIn Data', linkedin_index_path %></li>
+        <li><%= link_to 'Imported Data', imported_data_path %></li>
+        <li><%= link_to 'Companies', companies_path %></li>
+      </ul>
+      <hr>
+      <p style="font-size: 13px;">Import</p>
+      <ul>
+        <li><%= link_to 'Import Users', import_index_path %></li>
+      </ul>
+      <hr>
+      <p style="font-size: 13px;">Analysis</p>
+      <ul>
+        <li><%= link_to 'Data Progress', progress_index_path %></li>
+        <li><%= link_to 'Map of Users', users_map_index_path %></li>
+        <li><%= link_to 'Map of Companies', companies_map_index_path %></li>
+      </ul>
+    </div>
+    <div class="layout-content">
+      <%= yield %>
+    </div>
+  </div>
 </body>
 </html>
