@@ -26,7 +26,6 @@ gem 'gnuplotrb'
 gem 'daru'
 # gem 'iruby'
 # gem 'rbczmq'
-gem 'pycall'
 
 gem 'wicked_pdf'
 
