@@ -13,6 +13,7 @@ gem 'awesome_print'
 gem 'pg'
 gem 'rails-erd'
 gem 'bootstrap-sass', '~> 3.3.6'
+gem 'sidekiq'
 
 gem 'koala'
 gem 'mechanize'
@@ -25,6 +26,7 @@ gem 'gnuplotrb'
 gem 'daru'
 # gem 'iruby'
 # gem 'rbczmq'
+gem 'pycall'
 
 gem 'wicked_pdf'
 
