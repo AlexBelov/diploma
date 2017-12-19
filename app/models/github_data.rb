@@ -18,4 +18,15 @@ class GithubData < ActiveRecord::Base
   def update_user
     user.update_attributes(github: true)
   end
+
+  def recommendations
+    return nil if !stars.present?
+    command = "python lib/stars.py #{stars.pluck(:repo).join(' ')}"
+    JSON.parse(%x[#{command}])
+  end
+
+  def self.retrain_model
+    command = "python lib/train_model.py"
+    %x[#{command}]
+  end
 end
