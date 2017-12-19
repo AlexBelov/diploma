@@ -1,0 +1,52 @@
+<style>
+ svg text{
+   fill:grey;
+   font-size:11px;
+ }
+ svg .values text{
+   pointer-events:none;
+   stroke-width: 0.5px;
+ }
+ .groups:hover{
+   cursor:pointer;
+   font-weight:bold;
+ }
+</style>
+<script src="http://vizjs.org/viz.v1.1.0.min.js"></script>
+<script>
+ d3.csv("<%= @type %>.csv", function(err, data) {
+   var data = _.map(
+     data,
+     function(row){
+       return [row['lang1'], row['lang2'], row['weight']];
+     }
+   );
+
+   var colors = [
+     "#da4480", "#5ab449", "#7f5acd", "#aab740", "#ce58c0", "#50a26e", "#d1434b",
+     "#45c0bc", "#ce5929", "#4e7bda", "#d49d3c", "#6660a3", "#7b853c", "#b58dde",
+     "#97622e", "#609dd6", "#e29074", "#9c4b88", "#ab505f", "#dc85b6"
+   ];
+
+   function sort(a,b){ return 1; }
+
+   var ch = viz.ch().data(data)
+               .padding(.01)
+               .sort(sort)
+               .innerRadius(430)
+               .outerRadius(450)
+               .duration(1000)
+               .chordOpacity(0.3)
+               .labelPadding(.03)
+               .fill(function(d){ return _.sample(colors);});
+
+   var width=1200, height=1100;
+
+   var svg = d3.select(".layout-content").append("svg").attr("height",height).attr("width",width);
+
+   svg.append("g").attr("transform", "translate(600,550)").call(ch);
+
+   // adjust height of frame in bl.ocks.org
+   d3.select(self.frameElement).style("height", height+"px").style("width", width+"px");
+ });
+</script>

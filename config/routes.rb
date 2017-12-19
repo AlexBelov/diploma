@@ -37,6 +37,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :chords, only: [:index] do
+    collection do
+      get :languages_data
+    end
+  end
+
   resources :pdf do
     collection do
       get :report
