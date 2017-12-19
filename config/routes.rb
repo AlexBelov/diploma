@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "import#index"
+  root to: "progress#index"
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
