@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: "import#index"
 
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+
   resources :import, only: [:index] do
     collection do
       post :upload
